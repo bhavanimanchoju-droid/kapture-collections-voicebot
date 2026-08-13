@@ -1,0 +1,12 @@
+{
+  "name": "kapture-collections-mock-server",
+  "version": "1.0.0",
+  "description": "Mock webhook backend for the Kapture Finance collections voicebot",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
