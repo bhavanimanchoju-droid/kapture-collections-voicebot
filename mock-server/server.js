@@ -42,7 +42,7 @@ function toolResult(toolCallId, result) {
     results: [
       {
         toolCallId,
-        result
+        result: JSON.stringify(result)
       }
     ]
   };
@@ -135,13 +135,14 @@ app.post("/webhook", (req, res) => {
   if (!isAuthenticated(sessionId, accountId)) {
     console.log("Blocked protected tool: customer is not authenticated.");
 
-    return res.status(403).json(
-      toolResult(toolCall.id, {
-        success: false,
-        error: "NOT_AUTHENTICATED",
-        message: "Customer verification is required before this action."
-      })
-    );
+    return res.status(200).json({
+        results: [
+            {
+            toolCallId: toolCall.id,
+            error: "NOT_AUTHENTICATED: Customer verification is required before this action."
+            }
+        ]
+        });
   }
 
   // ---------------------------------------------------------
